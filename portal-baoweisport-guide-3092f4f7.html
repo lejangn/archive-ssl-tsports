@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝威体育 · 感知运动节奏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f5f7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            padding: 2rem 1.2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---------- hero card ---------- */
+        .hero-card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9ecf0;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1 1 320px;
+            min-width: 240px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1a2634;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-text .accent {
+            color: #2b6f9c;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            color: #4b5b6b;
+            max-width: 560px;
+            margin: 0.8rem 0 1.6rem 0;
+        }
+
+        .hero-visual {
+            flex: 0 0 140px;
+            height: 140px;
+            background: #e2e8f0;
+            border-radius: 24px;
+            background-image: radial-gradient(circle at 30% 30%, #ffffff20 0%, transparent 60%),
+                              linear-gradient(145deg, #d4dee8, #c0cddb);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: #2b4d6a;
+            opacity: 0.7;
+            user-select: none;
+        }
+
+        /* ---------- card grid ---------- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 680px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e4e8ee;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
+            padding: 1.8rem 1.6rem;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid #e5eaef;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: #1f2c3a;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #3a4c5e;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 0.4rem 0 0.4rem 1.6rem;
+            position: relative;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #6b8da8;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #edf2f7;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #2d4d6e;
+            margin-right: 0.4rem;
+        }
+
+        /* ---------- link paragraph card ---------- */
+        .link-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e4e8ee;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .link-card h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid #e5eaef;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.4rem;
+            color: #1f2c3a;
+        }
+
+        .link-card p {
+            font-size: 1rem;
+            color: #3a4c5e;
+            margin-bottom: 1rem;
+        }
+
+        .link-highlight {
+            background: #f0f4fa;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #1d4a6e;
+        }
+
+        .link-card a {
+            color: #1d4a6e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b7cadc;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .link-card a:hover {
+            color: #0a2a40;
+            border-bottom-color: #0a2a40;
+        }
+
+        /* ---------- faq mini ---------- */
+        .faq-mini {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e4e8ee;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            padding: 1.8rem 2rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid #e5eaef;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            color: #1f2c3a;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+        }
+
+        .faq-item q {
+            font-style: normal;
+            font-weight: 500;
+            color: #1f2f3f;
+        }
+
+        .faq-item p {
+            margin-top: 0.2rem;
+            font-size: 0.95rem;
+            color: #4a5b6c;
+        }
+
+        /* ---------- footer ---------- */
+        .footer-note {
+            text-align: center;
+            color: #7a8b9b;
+            font-size: 0.85rem;
+            padding: 2rem 0 0.5rem;
+            border-top: 1px solid #dce2ea;
+            margin-top: 0.8rem;
+        }
+
+        .inline-link {
+            color: #1d4a6e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid #c0d0de;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #1d4a6e;
+        }
+
+        .badge-light {
+            display: inline-block;
+            background: #e7edf5;
+            padding: 0.1rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #2d4a66;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero card 主视觉 -->
+    <div class="hero-card">
+        <div class="hero-text">
+            <h1>运动，就该有<span class="accent">自己的节奏</span></h1>
+            <p>不必追求别人定义的标准动作，也不必追赶谁的成绩线。找到适合你的发力方式、偏好的运动时段，甚至是一双合脚的鞋，比什么都重要。</p>
+            <div>
+                <span class="tag">🏃 日常有氧</span>
+                <span class="tag">🧘 柔韧训练</span>
+                <span class="tag">⚡ 力量适应</span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            ⚡
+        </div>
+    </div>
+
+    <!-- 两卡片：用途 + 适合人群 -->
+    <div class="card-grid">
+
+        <!-- 用途卡片 -->
+        <div class="card">
+            <h2>📋 用途卡片 · 可以做什么</h2>
+            <ul>
+                <li>快速查阅运动项目的分类与基础要领</li>
+                <li>根据自身状态选择合适的恢复与拉伸方案</li>
+                <li>记录个人运动偏好，形成轻量训练脉络</li>
+                <li>了解不同场景下的装备与场地建议</li>
+                <li>获取运动前后的营养与水分补充思路</li>
+            </ul>
+        </div>
+
+        <!-- 适合人群卡片 -->
+        <div class="card">
+            <h2>👥 适合人群</h2>
+            <p style="margin-bottom: 0.8rem;">无论你是刚开始培养运动习惯，还是已有固定节奏，都能在这里找到贴合自己的内容：</p>
+            <ul>
+                <li>上班族 —— 利用午休或晚间短时活动</li>
+                <li>学生群体 —— 课余低场地要求的训练方式</li>
+                <li>运动爱好者 —— 查缺补漏、丰富训练组合</li>
+                <li>康复恢复期 —— 温和动作与进阶思路</li>
+                <li>纯粹好奇者 —— 想了解运动到底在练什么</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 card -->
+    <div class="link-card">
+        <h2>🔗 运动信息 · 自然衔接</h2>
+        <p>
+            运动的世界里没有标准答案。有人喜欢晨跑时听播客，有人偏爱傍晚在健身房的独处时刻。如果你也认同运动应该是生活的一部分，而不是任务清单上的待办事项，那么不妨花几分钟了解一下 <a href="https://portal-baoweisport.com">宝威体育</a> 所分享的观点与资源。那里没有说教，只有平实的训练思路和轻松的讨论氛围。
+        </p>
+        <p>
+            有时候我们缺少的不是意志力，而是一个清晰、没有压力的起点。把运动理解成和身体对话的过程，而不是和别人的竞争，你会发现原本觉得吃力的部分也能慢慢变得自然。这也是 <span class="link-highlight">宝威体育</span> 一直传递的基调。
+        </p>
+        <p style="margin-bottom: 0;">
+            无论你正处在哪个阶段，都不妨去看看那些真实运动者的记录 —— 不是炫技，而是日常。透过这些内容，或许你也能找到属于自己的一点点新灵感。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h2>❓ 常见疑问 · 简短摘要</h2>
+        <div class="faq-item">
+            <q>运动前一定要做拉伸吗？</q>
+            <p>动态拉伸更适合运动前，静态拉伸建议放在运动后。根据自身柔韧性调整，不必过度追求幅度。</p>
+        </div>
+        <div class="faq-item">
+            <q>每天运动多久比较合理？</q>
+            <p>世界卫生组织建议成年人每周至少150分钟中等强度有氧，或75分钟高强度有氧。具体时长可以根据个人体能灵活分配。</p>
+        </div>
+        <div class="faq-item">
+            <q>运动后肌肉酸痛还能继续练吗？</q>
+            <p>轻微酸痛可以继续，但建议转换肌群或降低强度。如果酸痛影响动作质量，最好休息一天，让身体修复。</p>
+        </div>
+        <div class="faq-item" style="border-bottom: none; padding-bottom: 0;">
+            <q>如何选择适合自己的运动类型？</q>
+            <p>先从你最不排斥的运动开始，能坚持三周以上的类型往往就是适合你的。之后再根据身体反馈微调强度与频率。</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <span class="badge-light">基于生活化运动视角</span> &nbsp;·&nbsp; 内容仅供一般参考 &nbsp;·&nbsp; <a href="https://portal-baoweisport.com" class="inline-link">宝威体育</a>
+    </div>
+
+</div>
+</body>
+</html>
